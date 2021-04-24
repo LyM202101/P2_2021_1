@@ -1,0 +1,53 @@
+// -----------------------
+// Author 1: Veronica Escobar A
+// Codigo 1: 201922197
+// Author 2 : Juan Miguel Vega C
+// Codigo 2: 
+//
+// P2 - Lenguajes y Maquinas Seccion 2 2021-1
+//------------------------------
+//
+// 
+//-----------------------
+
+using gold.structures.automaton.*
+using gold.visualization.automaton.*
+
+procedure main(args:String[]) begin
+	
+	
+	//Declaration of automata
+	Q := 
+	Σ := 
+	Γ := 
+	q := 
+	F := 
+	
+	//Definition of (Mealy || Moore) automata
+	M := GDeterministicTransducer(Q,Σ,Γ,q,F,δ,g,h)
+	
+	//Show visual graph of automata
+	GAutomataFrame.show(M)
+	
+end
+
+
+/**
+ * Transition function
+ */
+function δ(q,s) begin
+	
+end
+
+/**
+ * Mealy Automata Output function
+ */
+function h(q,s) begin
+	
+end
+
+
+/**
+ * Moore AutomataOutput function
+ */
+function g(q) begin
