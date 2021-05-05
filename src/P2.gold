@@ -15,13 +15,15 @@ using gold.visualization.automaton.*
 
 procedure main(args:String[]) begin
 	
+	//q4_estados
+	q4_estados := {"q4_a", "q4_b", "q4_c" , "q4_d", "q4_e", "q4_f", "q4_g", "q4_h", "q4_i", "q4_j", "q4_k", "q4_l", "q4_m", "q4_n", "q4_o", "q4_p", "q4_q", "q4_r", "q4_s", "q4_t", "q4_u", "q4_v", "q4_w", "q4_x", "q4_y", "q4_z"}
 	
 	//Declaration of automata
-	Q := 
-	Σ := 
-	Γ := 
-	q := 
-	F := 
+	Q := {"q0", "q1", "q2", "q3"} ∪ q4_estados
+	Σ := ('a'‥'z')
+	Γ := ('a'‥'z')
+	q := "q0"
+	F := Q
 	
 	//Definition of (Mealy || Moore) automata
 	M := GDeterministicTransducer(Q,Σ,Γ,q,F,δ,g,h)
@@ -36,13 +38,64 @@ end
  * Transition function
  */
 function δ(q,s) begin
-	
+	String[] alph = new String[]["a","b","c","d","e","f","g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" ];
+	 
+	 
+	 /**
+	 * Case : q % 5 == 1
+	 * Rule :  Coded with the next letter in the alphabet
+	 */
+	 
+	 /**
+	 * Case : q % 5 == 2
+	 * Rule :  Duplicates input letter
+	 */
+	 
+	 /**
+	 * Case : q % 5 == 3
+	 * Rule :  Coded with previous letter in the alphabet
+	 */
+	 
+	 /**
+	 * Case : q % 5 == 4
+	 * Rule :  Not coded, outputs same letter as input
+	 */
+	 
+	 /**
+	 * Case : q % 5 == 0
+	 * Rule :  Replaced by the letter that was read and the previous letter (Slight adjustment to automata plan, first print input symbol and then the previous one)
+	 */
+
 end
 
 /**
  * Mealy Automata Output function
  */
 function h(q,s) begin
+	 /**
+	 * Case : q % 5 == 1
+	 * Rule :  Coded with the next letter in the alphabet
+	 */
+	 
+	 /**
+	 * Case : q % 5 == 2
+	 * Rule :  Duplicates input letter
+	 */
+	 
+	 /**
+	 * Case : q % 5 == 3
+	 * Rule :  Coded with previous letter in the alphabet
+	 */
+	 
+	 /**
+	 * Case : q % 5 == 4
+	 * Rule :  Not coded, outputs same letter as input
+	 */
+	 
+	 /**
+	 * Case : q % 5 == 0
+	 * Rule :  Replaced by the letter that was read and the previous letter (Slight adjustment to automata plan, first print input symbol and then the previous one)
+	 */
 	
 end
 
@@ -51,3 +104,5 @@ end
  * Moore AutomataOutput function
  */
 function g(q) begin
+	return λ //For P2 We wont be using a Moore Automata.
+end
