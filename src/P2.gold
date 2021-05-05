@@ -39,14 +39,8 @@ end
  */
  //Nota : I typed los estado a ser strings para que gold no llorara cuando uso string methods
 function δ(q: String,s) begin
-	alph_str :String = "abcdefghijklmnopqrstuvwxyz"
-	alph:char[] = alph_str.toCharArray()
-	eAlph := ('a'‥'z')
 	
-	//Current symbol being handled
-	currSymbol:char = s
-	
-	
+	eAlph := ('a'‥'z') // Ver si se puede quitar esto y todos los s in alphabet . Creo que son redundantes tomando en cuenta que esto es tanto el alfabeto de entrada como el de salida
 	
 	 /**
 	 * Case : q % 5 == 1
@@ -89,9 +83,6 @@ function δ(q: String,s) begin
 	  */
 	 else
 	 	return "err"
-	 	
-	 	
-	 	
 	 	
 	 end
 
