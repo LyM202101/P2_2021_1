@@ -37,7 +37,8 @@ end
 /**
  * Transition function
  */
-function δ(q,s) begin
+ //Nota : I typed los estado a ser strings para que gold no llorara cuando uso string methods
+function δ(q: String,s) begin
 	alph_str :String = "abcdefghijklmnopqrstuvwxyz"
 	alph:char[] = alph_str.toCharArray()
 	eAlph := ('a'‥'z')
@@ -80,10 +81,8 @@ function δ(q,s) begin
 	 * Case : q % 5 == 0
 	 * Rule :  Replaced by the letter that was read and the previous letter (Slight adjustment to automata plan, first print input symbol and then the previous one)
 	 */
-	 elseif ((q == "") and (s in eAlph)) then
-	 	//TODO COMLETAR ESTO
-	 	return ""// TOCA COMPLETAR LA CANTIDAD RIDICULA DE ESTADOS INVOLUCRADOS EN ESTA TRANISCION. La transicion es de many to one
-	 	
+	 elseif (q.startsWith("q4_") and s in eAlph) then
+	 	return "q0"
 	 	
 	 /**
 	  * Caso de error
