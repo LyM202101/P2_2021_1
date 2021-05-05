@@ -1,0 +1,114 @@
+Input: thecatinthehat
+Expected Output: uhhdcacuiimthtfhhzt
+Real     Output: uhhdcacuiimthtfhhzt
+
+Input: ahomebird
+Expected Output: bhhnmemciiqd
+Real     Output: bhhnmemciiqd
+
+Input: allgreektome
+Expected Output:
+Real     Output:
+
+
+Input: drawingablank
+Expected Output:
+Real     Output:
+
+
+Input: gooutonalimb
+Expected Output:
+Real     Output:
+
+
+Input: ropes
+Expected Output:
+Real     Output:
+
+Input: papitas
+Expected Output:
+Real     Output:
+
+Input: salami
+Expected Output:
+Real     Output:
+
+Input: pie
+Expected Output:
+Real     Output:
+
+Input: alittlebirdtoldme
+Expected Output:
+Real     Output:
+
+
+Input: 
+Expected Output:
+Real     Output:
+
+
+Input: 
+Expected Output:
+Real     Output:
+
+
+Input: 
+Expected Output:
+Real     Output:
+
+
+Input: 
+Expected Output:
+Real     Output:
+
+
+Input: 
+Expected Output:
+Real     Output:
+
+
+Input: 
+Expected Output:
+Real     Output:
+
+
+Input: 
+Expected Output:
+Real     Output:
+
+
+Input: 
+Expected Output:
+Real     Output:
+
+
+Input: 
+Expected Output:
+Real     Output:
+
+
+Input: 
+Expected Output:
+Real     Output:
+
+
+Input: 
+Expected Output:
+Real     Output:
+
+
+Input: 
+Expected Output:
+Real     Output:
+
+
+Input: 
+Expected Output:
+Real     Output:
+
+
+Input: 
+Expected Output:
+Real     Output:
+
+
