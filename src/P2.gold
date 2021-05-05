@@ -19,7 +19,7 @@ procedure main(args:String[]) begin
 	q4_estados := {"q4_a", "q4_b", "q4_c" , "q4_d", "q4_e", "q4_f", "q4_g", "q4_h", "q4_i", "q4_j", "q4_k", "q4_l", "q4_m", "q4_n", "q4_o", "q4_p", "q4_q", "q4_r", "q4_s", "q4_t", "q4_u", "q4_v", "q4_w", "q4_x", "q4_y", "q4_z"}
 	
 	//Declaration of automata
-	Q := {"q0", "q1", "q2", "q3"} ∪ q4_estados
+	Q := {"q0", "q1", "q2", "q3"} ∪ q4_estados ∪ "err"
 	Σ := ('a'‥'z')
 	Γ := ('a'‥'z')
 	q := "q0"
@@ -38,33 +38,61 @@ end
  * Transition function
  */
 function δ(q,s) begin
-	String[] alph = new String[]["a","b","c","d","e","f","g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" ];
-	 
-	 
+	alph_str :String = "abcdefghijklmnopqrstuvwxyz"
+	alph:char[] = alph_str.toCharArray()
+	eAlph := ('a'‥'z')
+	
+	//Current symbol being handled
+	currSymbol:char = s
+	
 	 /**
 	 * Case : q % 5 == 1
 	 * Rule :  Coded with the next letter in the alphabet
 	 */
-	 
+	 if ((q == "q0") and (s in eAlph)) then
+	 	return "q1"
+	 	
 	 /**
 	 * Case : q % 5 == 2
 	 * Rule :  Duplicates input letter
 	 */
-	 
+	 elseif ((q == "q1") and (s in eAlph)) then
+	 	return "q2"
+	 	
 	 /**
 	 * Case : q % 5 == 3
 	 * Rule :  Coded with previous letter in the alphabet
 	 */
+	 elseif ((q == "q2") and (s in eAlph)) then
+	 	return "q3"
 	 
 	 /**
 	 * Case : q % 5 == 4
 	 * Rule :  Not coded, outputs same letter as input
 	 */
-	 
+	 elseif ((q == "q4") and (s in eAlph)) then
+	 	//TODO COMPELTAR ESTO
+	 	return "" // TOCA COMPLETAR LA CANTIDAD RIDICULA DE ESTADOS INVOLUCRADOS EN ESTA TRANISCION. La transicion es de one to many
+	 	
 	 /**
 	 * Case : q % 5 == 0
 	 * Rule :  Replaced by the letter that was read and the previous letter (Slight adjustment to automata plan, first print input symbol and then the previous one)
 	 */
+	 elseif ((q == "") and (s in eAlph)) then
+	 	//TODO COMLETAR ESTO
+	 	return ""// TOCA COMPLETAR LA CANTIDAD RIDICULA DE ESTADOS INVOLUCRADOS EN ESTA TRANISCION. La transicion es de many to one
+	 	
+	 	
+	 /**
+	  * Caso de error
+	  */
+	 else
+	 	return "err"
+	 	
+	 	
+	 	
+	 	
+	 end
 
 end
 
@@ -72,30 +100,79 @@ end
  * Mealy Automata Output function
  */
 function h(q,s) begin
+	eAlph := ('a'‥'z')
+	alph_str:String = "abcdefghijklmnopqrstuvwxyz"
+	alph:char[] = alph_str.toCharArray()
+	
+	//Current symbol being handled (Also helps in case rule 4 is fullfiled)
+	currChar:char = s
+	
+	//Get duplication of the current symbol in the case Rule 2 is fullfiled
+	duplicateChar : String = currChar + currChar
+	
+	//Get the previous and next symbol of the sequence
+	index: int = alph_str.indexOf(currChar)
+	nextChar: char = ' ' //Filler (Considerar tener un symbolo de error para saber cuando la codificacion salio algo mal, auqnue no deberia ser posibel)
+	prevChar: char = ' ' //Filler
+	lastPos : int = alph.length -1 // gets to the last positon in the array. Corresponding to the letter Z
+	
+	//Calculates the next character or the previous character in case Rule 1 or 3 are fullfiled:
+	if (index == 0) then
+		prevChar = alph[lastPos]
+		nextChar = alph[index + 1]
+	elseif (index == lastPos) then
+		prevChar = alph[index - 1]
+		nextChar = alph[0]
+	elseif((index != 0) and (index != lastPos)) then
+		prevChar = alph[index - 1]
+		nextChar = alph[index + 1]
+	end
+	
+	//TODO: Creo que podemos quitar lo de s in eAlph porque ya tenemos todo basicamente ahi
+	
 	 /**
 	 * Case : q % 5 == 1
 	 * Rule :  Coded with the next letter in the alphabet
 	 */
+	 if (q == "q0" and s in eAlph) then
+	 	return nextChar
 	 
 	 /**
 	 * Case : q % 5 == 2
 	 * Rule :  Duplicates input letter
 	 */
+	 elseif ( q == "q1" and s in eAlph) then
+	 	return duplicateChar
 	 
 	 /**
 	 * Case : q % 5 == 3
 	 * Rule :  Coded with previous letter in the alphabet
 	 */
+	 elseif ( q == "q2" and s in eAlph) then
+	 	return prevChar
 	 
 	 /**
 	 * Case : q % 5 == 4
 	 * Rule :  Not coded, outputs same letter as input
 	 */
+	 elseif (q == "q3" and s in eAlph) then
+	 	return s
 	 
 	 /**
 	 * Case : q % 5 == 0
 	 * Rule :  Replaced by the letter that was read and the previous letter (Slight adjustment to automata plan, first print input symbol and then the previous one)
 	 */
+	 
+		// Hay que tener cuidado haciendo este. Creo que hay una forma de optimizarlo si nos creamos un hashMap pero me toca pensarlo mejor.
+		
+		
+	 /**
+	  * Case of error. Nothing else worked so something went wrong
+	  */
+	 else
+	 	return λ
+	 	
+	 end
 	
 end
 
