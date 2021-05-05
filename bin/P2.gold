@@ -91,7 +91,8 @@ end
 /**
  * Mealy Automata Output function
  */
-function h(q,s) begin
+ //Nota: Lo typee para evitar el mismo problema de la funcion de transicion
+function h(q: String,s) begin
 	eAlph := ('a'‥'z')
 	alph_str:String = "abcdefghijklmnopqrstuvwxyz"
 	alph:char[] = alph_str.toCharArray()
@@ -154,8 +155,8 @@ function h(q,s) begin
 	 * Case : q % 5 == 0
 	 * Rule :  Replaced by the letter that was read and the previous letter (Slight adjustment to automata plan, first print input symbol and then the previous one)
 	 */
-	 
-		// Hay que tener cuidado haciendo este. Creo que hay una forma de optimizarlo si nos creamos un hashMap pero me toca pensarlo mejor.
+	 elseif ( q.startsWith("q4_")) then
+	// Hay que tener cuidado haciendo este. Creo que hay una forma de optimizarlo si nos creamos un hashMap pero me toca pensarlo mejor.
 		
 		
 	 /**
