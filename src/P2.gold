@@ -45,6 +45,8 @@ function δ(q,s) begin
 	//Current symbol being handled
 	currSymbol:char = s
 	
+	
+	
 	 /**
 	 * Case : q % 5 == 1
 	 * Rule :  Coded with the next letter in the alphabet
@@ -70,9 +72,9 @@ function δ(q,s) begin
 	 * Case : q % 5 == 4
 	 * Rule :  Not coded, outputs same letter as input
 	 */
-	 elseif ((q == "q4") and (s in eAlph)) then
-	 	//TODO COMPELTAR ESTO
-	 	return "" // TOCA COMPLETAR LA CANTIDAD RIDICULA DE ESTADOS INVOLUCRADOS EN ESTA TRANISCION. La transicion es de one to many
+	 elseif ((q == "q3") and (s in eAlph)) then
+	 	q4_nextLetterState : String = "q4_" + s // based on the input letter in s then it should transition to state q4_s
+	 	return q4_nextLetterState 
 	 	
 	 /**
 	 * Case : q % 5 == 0
