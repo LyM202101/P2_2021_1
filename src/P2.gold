@@ -19,7 +19,7 @@ procedure main(args:String[]) begin
 	q4_estados := {"q4_a", "q4_b", "q4_c" , "q4_d", "q4_e", "q4_f", "q4_g", "q4_h", "q4_i", "q4_j", "q4_k", "q4_l", "q4_m", "q4_n", "q4_o", "q4_p", "q4_q", "q4_r", "q4_s", "q4_t", "q4_u", "q4_v", "q4_w", "q4_x", "q4_y", "q4_z"}
 	
 	//Declaration of automata
-	Q := {"q0", "q1", "q2", "q3"} ∪ q4_estados ∪ "err"
+	Q := {"q0", "q1", "q2", "q3", "err"} ∪ q4_estados 
 	Σ := ('a'‥'z')
 	Γ := ('a'‥'z')
 	q := "q0"
@@ -99,9 +99,10 @@ function h(q: String,s) begin
 	
 	//Current symbol being handled (Also helps in case rule 4 is fullfiled)
 	currChar:char = s
+	currCharAsString:String = Character.toString(s)
 	
 	//Get duplication of the current symbol in the case Rule 2 is fullfiled
-	duplicateChar : String = currChar + currChar
+	duplicateChar : String = currCharAsString.concat(currCharAsString)
 	
 	//Get the previous and next symbol of the sequence
 	index: int = alph_str.indexOf(currChar)
@@ -155,9 +156,13 @@ function h(q: String,s) begin
 	 * Case : q % 5 == 0
 	 * Rule :  Replaced by the letter that was read and the previous letter (Slight adjustment to automata plan, first print input symbol and then the previous one)
 	 */
-	 elseif ( q.startsWith("q4_")) then
-	// Hay que tener cuidado haciendo este. Creo que hay una forma de optimizarlo si nos creamos un hashMap pero me toca pensarlo mejor.
-		
+	 elseif ( q.startsWith("q4_") and s in eAlph) then
+		//Does loop arround the whole alphabet to check which state its in and returns the corresponding letter (the state contains informatin about the previous letter)
+		for each letter in eAlph do
+			if( q.endsWith(letter)) then
+				return currCharAsString.concat(Character.toString(letter))  //Concatenates current letter being passed , s, and the letter that was reviously passed , letter
+			end
+		end
 		
 	 /**
 	  * Case of error. Nothing else worked so something went wrong

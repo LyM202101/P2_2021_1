@@ -17,7 +17,7 @@ public final class P2 {
       $line=19;
       Object q4_estados=$fix(GCollections.asSet("q4_a","q4_b","q4_c","q4_d","q4_e","q4_f","q4_g","q4_h","q4_i","q4_j","q4_k","q4_l","q4_m","q4_n","q4_o","q4_p","q4_q","q4_r","q4_s","q4_t","q4_u","q4_v","q4_w","q4_x","q4_y","q4_z"));
       $line=22;
-      Object Q=$fix($opUnionY($opUnionY(GCollections.asSet("q0","q1","q2","q3"),q4_estados),"err"));
+      Object Q=$fix($opUnionY(GCollections.asSet("q0","q1","q2","q3","err"),q4_estados));
       $line=23;
       Object \u03A3=$fix($opIntvlY('a','z'));
       $line=24;
@@ -106,74 +106,86 @@ public final class P2 {
       char[] alph=$cast(char[].class,$fix(((java.lang.String)alph_str).toCharArray()));
       $line=101;
       Character currChar=$cast(Character.class,$fix(s));
-      $line=104;
-      String duplicateChar=$cast(String.class,$fix($opAdditY(currChar,currChar)));
-      $line=107;
-      Integer index=$cast(Integer.class,$fix($invokeMethod("indexOf",alph_str,new Object[]{currChar})));
+      $line=102;
+      String currCharAsString=$cast(String.class,$fix(Character.toString($cast(char.class,s))));
+      $line=105;
+      String duplicateChar=$cast(String.class,$fix(((java.lang.String)currCharAsString).concat($cast(java.lang.String.class,currCharAsString))));
       $line=108;
-      Character nextChar=$cast(Character.class,$fix(' '));
+      Integer index=$cast(Integer.class,$fix($invokeMethod("indexOf",alph_str,new Object[]{currChar})));
       $line=109;
-      Character prevChar=$cast(Character.class,$fix(' '));
+      Character nextChar=$cast(Character.class,$fix(' '));
       $line=110;
+      Character prevChar=$cast(Character.class,$fix(' '));
+      $line=111;
       Integer lastPos=$cast(Integer.class,$fix($opSubtrY($invokeField("length",alph),1)));
-      $line=113;
+      $line=114;
       if ($bool($opEqualY(index,0))) {
-        $line=114;
-        prevChar=$cast(Character.class,$fix(((char[])alph)[$int(lastPos)]));
         $line=115;
+        prevChar=$cast(Character.class,$fix(((char[])alph)[$int(lastPos)]));
+        $line=116;
         nextChar=$cast(Character.class,$fix(((char[])alph)[$int($opAdditY(index,1))]));
       }
       else {
-        $line=116;
+        $line=117;
         if ($bool($opEqualY(index,lastPos))) {
-          $line=117;
-          prevChar=$cast(Character.class,$fix(((char[])alph)[$int($opSubtrY(index,1))]));
           $line=118;
+          prevChar=$cast(Character.class,$fix(((char[])alph)[$int($opSubtrY(index,1))]));
+          $line=119;
           nextChar=$cast(Character.class,$fix(((char[])alph)[$int(0)]));
         }
         else {
-          $line=119;
+          $line=120;
           if ($bool(($bool(!$opEqualY(index,0))&&$bool(!$opEqualY(index,lastPos))))) {
-            $line=120;
-            prevChar=$cast(Character.class,$fix(((char[])alph)[$int($opSubtrY(index,1))]));
             $line=121;
+            prevChar=$cast(Character.class,$fix(((char[])alph)[$int($opSubtrY(index,1))]));
+            $line=122;
             nextChar=$cast(Character.class,$fix(((char[])alph)[$int($opAdditY(index,1))]));
           }
         }
       }
-      $line=130;
+      $line=131;
       if ($bool(($opEqualY(q,"q0")&&$opMembrY(s,eAlph)))) {
-        $line=131;
+        $line=132;
         $result=nextChar;
         if (true) break $try;
       }
       else {
-        $line=137;
+        $line=138;
         if ($bool(($opEqualY(q,"q1")&&$opMembrY(s,eAlph)))) {
-          $line=138;
+          $line=139;
           $result=duplicateChar;
           if (true) break $try;
         }
         else {
-          $line=144;
+          $line=145;
           if ($bool(($opEqualY(q,"q2")&&$opMembrY(s,eAlph)))) {
-            $line=145;
+            $line=146;
             $result=prevChar;
             if (true) break $try;
           }
           else {
-            $line=151;
+            $line=152;
             if ($bool(($opEqualY(q,"q3")&&$opMembrY(s,eAlph)))) {
-              $line=152;
+              $line=153;
               $result=s;
               if (true) break $try;
             }
             else {
-              $line=158;
-              if ($bool(((java.lang.String)q).startsWith($cast(java.lang.String.class,"q4_")))) {
+              $line=159;
+              if ($bool(($bool(((java.lang.String)q).startsWith($cast(java.lang.String.class,"q4_")))&&$opMembrY(s,eAlph)))) {
+                $line=161;
+                for (Object $v1:GCollections.unmodifiableCollection(eAlph)) {
+                  Object letter=$v1;
+                  $line=162;
+                  if ($bool(((java.lang.String)q).endsWith($cast(java.lang.String.class,letter)))) {
+                    $line=163;
+                    $result=((java.lang.String)currCharAsString).concat($cast(java.lang.String.class,Character.toString($cast(char.class,letter))));
+                    if (true) break $try;
+                  }
+                }
               }
               else {
-                $line=166;
+                $line=171;
                 $result="";
                 if (true) break $try;
               }
@@ -181,7 +193,7 @@ public final class P2 {
           }
         }
       }
-      $line=170;
+      $line=175;
       $rethrow(new RuntimeException("The function \"h(q:String,s:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -193,10 +205,10 @@ public final class P2 {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=177;
+      $line=182;
       $result="";
       if (true) break $try;
-      $line=178;
+      $line=183;
       $rethrow(new RuntimeException("The function \"g(q:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
