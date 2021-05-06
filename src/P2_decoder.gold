@@ -1,0 +1,98 @@
+// -----------------------
+// Author 1: Veronica Escobar A
+// Codigo 1: 201922197
+// Author 2 : Juan Miguel Vega C
+// Codigo 2: 
+//
+// P2 - LyM Seccion 2 2021-1
+//------------------------------
+// 
+// Task Statement: The purpose of this project is to use GOLD to define a finite state transducer to code and decode inputs. 
+// 
+// In this program we present a Mealy Automata that is able to decode the input
+//-----------------------
+
+using gold.structures.automaton.*
+using gold.visualization.automaton.*
+
+procedure main(args:String[]) begin
+	
+	//Declaration of automata
+	Q := {"d0", "d1", "d2", "d3","d4", "d5", "d6", "err"} 
+	Σ := ('a'‥'z')
+	Γ := ('a'‥'z')
+	q := "d0"
+	F := Q
+	
+	//Definition of Mealy automata
+	M := GDeterministicTransducer(Q,Σ,Γ,q,F,δ,g,h)
+	
+	//Show visual graph of automata
+	GAutomataFrame.show(M)
+	
+end
+
+/**
+ * Transition function
+ */
+function δ(q,s) begin
+	eAlph := ('a'‥'z')
+	
+	 /**
+	 * Case : q % 5 == 1
+	 * Rule : Decode with previous letter of the alphabet
+	 */
+	 if ((q == "q0") and (s in eAlph)) then
+	 	return "q1"
+	 	
+	 /**
+	 * Case : q % 5 == 2
+	 * Rule :  Duplicates input letter
+	 */
+	 elseif ((q == "q1") and (s in eAlph)) then
+	 	return "q2"
+	 	
+	 /**
+	 * Case : q % 5 == 3
+	 * Rule :  Coded with previous letter in the alphabet
+	 */
+	 elseif ((q == "q2") and (s in eAlph)) then
+	 	return "q3"
+	 
+	 /**
+	 * Case : q % 5 == 4
+	 * Rule :  Not coded, outputs same letter as input
+	 */
+	 elseif ((q == "q3") and (s in eAlph)) then
+	 	q4_nextLetterState : String = "q4_" + s // based on the input letter in s then it should transition to state q4_s
+	 	return q4_nextLetterState 
+	 	
+	 /**
+	 * Case : q % 5 == 0
+	 * Rule :  Replaced by the letter that was read and the previous letter (Slight adjustment to automata plan, first print input symbol and then the previous one)
+	 */
+	 elseif (q.startsWith("q4_") and s in eAlph) then
+	 	return "q0"
+	 	
+	 /**
+	  * Caso de error
+	  */
+	 else
+	 	return "err"
+	 	
+	 end
+end
+
+/**
+ * Mealy Automata Output function
+ */
+function h(q,s) begin
+	
+end
+
+/**
+ * Moore AutomataOutput function
+ */
+function g(q) begin
+	return λ //For P2 We wont be using a Moore Automata.
+end

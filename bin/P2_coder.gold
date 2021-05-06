@@ -4,10 +4,12 @@
 // Author 2 : Juan Miguel Vega C
 // Codigo 2: 
 //
-// P2 - Lenguajes y Maquinas Seccion 2 2021-1
+// P2 - LyM Seccion 2 2021-1
 //------------------------------
-//
 // 
+// Task Statement: The purpose of this project is to use GOLD to define a finite state transducer to code and decode inputs. 
+// 
+// In this program we present a Mealy Automata that is able to code the input
 //-----------------------
 
 using gold.structures.automaton.*
