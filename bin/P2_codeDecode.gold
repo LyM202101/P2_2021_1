@@ -2,7 +2,7 @@
 // Author 1: Veronica Escobar A
 // Codigo 1: 201922197
 // Author 2 : Juan Miguel Vega C
-// Codigo 2: 
+// Codigo 2:
 //
 // P2 - LyM Seccion 2 2021-1
 //------------------------------
@@ -122,7 +122,6 @@ procedure consoleCodeDecode(C:ITransducer, D:ITransducer) begin
 		       		
 		       	//OPTION 3: CODE AND DECODE
 		       	else
-		       		
 		       		isAccepted = C.acceptsString(currentInput) 
 		       		codedString = C.getOutputString()
 		    		print codedStrScript.concat(codedString)
@@ -282,7 +281,7 @@ end
 
 /**
  * Decode output function
- * The excact rules used to decode can be seen in the documentation, it mostly consists in undoing the changes and char aditons on the base string
+ * The exact rules used to decode can be seen in the documentation, it mostly consists in undoing the changes and char aditons on the base string
  * More info in the docs.
  */
 function hDecode(q,s) begin
