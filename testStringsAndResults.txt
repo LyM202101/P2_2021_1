@@ -31,45 +31,45 @@ Input: alittlebirdtoldme
 Output: bllhtttmeeairiettnldlnee
 
 
-Input: parforthecours
-Output:
+Input: parforthecourse
+Output:qaaqfofsttgecepuuqses
 
 
 Input: cupoofjoe
-Output:
+Output: duuoooogjjne
 
 Input: breaktheice
-Output:
+Output: crrdakauhhdicif
 
 
 Input: acitaboove 
-Output:
+Output: bcchtatcoonvev
 
 Input: handdown
-Output: 
+Output: iaamdddpwwm
 
 
 Input: mycupoftea
-Output:
+Output: nyybupupffseae
 
 Input: acolddayinjuli
-Output:
+Output: bccnldleaaxinikuuki
 
 
 Input: bllhtttmeeairiettnldlnee
-Output:
+Output: cllkhthuttleeebiiqieiuttmldlmnnde
 
-Input: 
-Output:
-
-
-Input: 
-Output:
-
-Input: 
-Output:
+Input: drseuss
+Output: errreuetss
 
 
-Input: 
-Output:
+Input: woobleeewoobleee
+Output: xoonblbfeedwowpbbkeeef
+
+Input: abcdeabcdeabcde
+Output: bbbbdedbbbbdedbbbbded
+
+
+Input: abcde
+Output: bbbbded
 
