@@ -183,7 +183,7 @@ function δCode(q: String,s) begin
 	 elseif q == "q1" then
 	 	return "q2"
 	 	
-	// Case (q % 5 == 2) &&  Rule( Duplicates input letter)
+	// Case (q % 5 == 3) &&  Rule( Coded with previous letter in the alphabet)
 	  elseif q == "q2" then
 	 	return "q3"
 	 
