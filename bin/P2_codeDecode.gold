@@ -1,4 +1,25 @@
-
+// -----------------------
+// Author 1: Veronica Escobar A
+// Codigo 1: 201922197
+// Author 2 : Juan Miguel Vega C
+// Codigo 2: 
+//
+// P2 - LyM Seccion 2 2021-1
+//------------------------------
+// 
+// Task Statement: The purpose of this project is to use GOLD to define a finite state transducer to code and decode inputs. 
+// 
+// This program is able to both code and decode a given string that contains letters from the english alphabet (lowercase) acording to a set of given rules.
+// To do both the coding and decoding a Mealy automata is used as it makes the coding and decoding proces easier, at least programaticaly in gold.
+//
+// In the docs there is more information about the automatas used and their design (nice little picture)
+// Also in the docs there is also a file containing a variety of tests done to the automata to check its coding and decoding as excpected. 
+// But if you use option 3 in the console programme you will be ablte to quickly test strings to see how they are coded and decoded (the tests and this show the same info)
+//
+// This is a console program so when runing this file with (Run gold program (without arguments) please check the console. 
+// If you want to see the automatas you can buy uncomenting lines 46 and 47 . Either way a prettier version of them is shown in the docs.
+//
+//-----------------------
 using gold.**
          
 //Declared outside in order that decoder and coder can read them  
@@ -21,6 +42,10 @@ procedure main(args:String[]) begin
     coder:=createCoder()
    	deCoder:=createDecoder()
    	
+   	//UNCOMMENT TO VISUALIZE AUTOMATAS
+   	//GAutomataFrame.show(coder)
+   	//GAutomataFrame.show(deCoder)
+   	
    	//Console (through this you can interact with coder and decoder)
    	consoleCodeDecode(coder,deCoder)
 end
@@ -40,6 +65,7 @@ procedure consoleCodeDecode(C:ITransducer, D:ITransducer) begin
 		if currentInput != λ then
 			
 			currentInput := sc.nextLine()	
+			//currentInput := sc.nextLine()	.toLowerCase()
 			
 			if currentInput != λ then
 				valid := false
