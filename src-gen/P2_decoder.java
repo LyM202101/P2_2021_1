@@ -37,32 +37,32 @@ public final class P2_decoder {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=40;
+      $line=39;
       Object alphabet=$fix($opIntvlY('a','z'));
-      $line=41;
+      $line=40;
       String stateId=$cast(String.class,$fix("d"));
-      $line=44;
+      $line=43;
       if ($bool(($bool((!$bool(((java.lang.String)q).endsWith($cast(java.lang.String.class,6)))&&!$bool(((java.lang.String)q).endsWith($cast(java.lang.String.class,"r")))))&&$opMembrY(s,alphabet)))) {
-        $line=45;
+        $line=44;
         Integer nextStateNumber=$cast(Integer.class,$fix($opAdditY(Integer.parseInt($cast(java.lang.String.class,$getArrayValue(q,new Object[]{1}))),1)));
-        $line=46;
+        $line=45;
         $result=((java.lang.String)stateId).concat($cast(java.lang.String.class,Integer.toString($int(nextStateNumber))));
         if (true) break $try;
       }
       else {
-        $line=49;
+        $line=48;
         if ($bool(($bool(((java.lang.String)q).endsWith($cast(java.lang.String.class,6)))&&$opMembrY(s,alphabet)))) {
-          $line=50;
+          $line=49;
           $result=((java.lang.String)stateId).concat($cast(java.lang.String.class,"0"));
           if (true) break $try;
         }
         else {
-          $line=54;
+          $line=53;
           $result="err";
           if (true) break $try;
         }
       }
-      $line=56;
+      $line=55;
       $rethrow(new RuntimeException("The function \"\u03B4(q:String,s:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -74,109 +74,71 @@ public final class P2_decoder {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=62;
-      Object eAlph=$fix($opIntvlY('a','z'));
-      $line=63;
+      $line=61;
       String alph_str=$cast(String.class,$fix("abcdefghijklmnopqrstuvwxyz"));
-      $line=64;
+      $line=62;
       char[] alph=$cast(char[].class,$fix(((java.lang.String)alph_str).toCharArray()));
-      $line=67;
-      Character currChar=$cast(Character.class,$fix(s));
-      $line=68;
-      String currCharAsString=$cast(String.class,$fix(Character.toString($cast(char.class,s))));
-      $line=71;
-      Integer index=$cast(Integer.class,$fix($invokeMethod("indexOf",alph_str,new Object[]{currChar})));
-      $line=72;
+      $line=65;
+      Integer index=$cast(Integer.class,$fix($invokeMethod("indexOf",alph_str,new Object[]{s})));
+      $line=66;
       Character nextChar=$cast(Character.class,$fix(' '));
-      $line=73;
+      $line=67;
       Character prevChar=$cast(Character.class,$fix(' '));
-      $line=74;
+      $line=68;
       Integer lastPos=$cast(Integer.class,$fix($opSubtrY($invokeField("length",alph),1)));
-      $line=77;
-      if ($bool($opEqualY(index,0))) {
-        $line=78;
+      $line=71;
+      if ($opEqualY(index,0)) {
+        $line=72;
         prevChar=$cast(Character.class,$fix(((char[])alph)[$int(lastPos)]));
-        $line=79;
+        $line=73;
         nextChar=$cast(Character.class,$fix(((char[])alph)[$int($opAdditY(index,1))]));
       }
       else {
-        $line=80;
-        if ($bool($opEqualY(index,lastPos))) {
-          $line=81;
+        $line=74;
+        if ($opEqualY(index,lastPos)) {
+          $line=75;
           prevChar=$cast(Character.class,$fix(((char[])alph)[$int($opSubtrY(index,1))]));
-          $line=82;
+          $line=76;
           nextChar=$cast(Character.class,$fix(((char[])alph)[$int(0)]));
         }
         else {
-          $line=83;
-          if ($bool(($bool(!$opEqualY(index,0))&&$bool(!$opEqualY(index,lastPos))))) {
-            $line=84;
+          $line=77;
+          if (!$opEqualY(index,0)) {
+            $line=78;
             prevChar=$cast(Character.class,$fix(((char[])alph)[$int($opSubtrY(index,1))]));
-            $line=85;
+            $line=79;
             nextChar=$cast(Character.class,$fix(((char[])alph)[$int($opAdditY(index,1))]));
           }
         }
       }
-      $line=95;
-      if ($bool(($opEqualY(q,"d0")&&$opMembrY(s,eAlph)))) {
-        $line=96;
+      $line=84;
+      if ($opEqualY(q,"d0")) {
+        $line=85;
         $result=prevChar;
         if (true) break $try;
       }
       else {
-        $line=102;
-        if ($bool(($opEqualY(q,"d1")&&$opMembrY(s,eAlph)))) {
-          $line=103;
+        $line=86;
+        if ($bool((($opEqualY(q,"d1")||$opEqualY(q,"d4"))||$opEqualY(q,"d5")))) {
+          $line=87;
           $result=s;
           if (true) break $try;
         }
         else {
-          $line=105;
-          if ($bool(($opEqualY(q,"d2")&&$opMembrY(s,eAlph)))) {
-            $line=106;
-            $result="";
+          $line=88;
+          if ($opEqualY(q,"d3")) {
+            $line=89;
+            $result=nextChar;
             if (true) break $try;
           }
           else {
-            $line=112;
-            if ($bool(($opEqualY(q,"d3")&&$opMembrY(s,eAlph)))) {
-              $line=113;
-              $result=nextChar;
-              if (true) break $try;
-            }
-            else {
-              $line=119;
-              if ($bool(($opEqualY(q,"d4")&&$opMembrY(s,eAlph)))) {
-                $line=120;
-                $result=s;
-                if (true) break $try;
-              }
-              else {
-                $line=127;
-                if ($bool(($opEqualY(q,"d5")&&$opMembrY(s,eAlph)))) {
-                  $line=128;
-                  $result=s;
-                  if (true) break $try;
-                }
-                else {
-                  $line=130;
-                  if ($bool(($opEqualY(q,"d6")&&$opMembrY(s,eAlph)))) {
-                    $line=131;
-                    $result="";
-                    if (true) break $try;
-                  }
-                  else {
-                    $line=137;
-                    $result="";
-                    if (true) break $try;
-                  }
-                }
-              }
-            }
+            $line=91;
+            $result="";
+            if (true) break $try;
           }
         }
       }
-      $line=139;
+      $line=93;
       $rethrow(new RuntimeException("The function \"h(q:Object,s:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -188,10 +150,10 @@ public final class P2_decoder {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=145;
+      $line=99;
       $result="";
       if (true) break $try;
-      $line=146;
+      $line=100;
       $rethrow(new RuntimeException("The function \"g(q:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
