@@ -43,6 +43,7 @@ procedure consoleCodeDecode(C:ITransducer, D:ITransducer) begin
 				
 				
               while !valid do
+	               print ""			       
 	              	print "What do you want to do with this string?"
 			       	print "1. code"
 			       	print "2. decode"
@@ -90,7 +91,7 @@ procedure consoleCodeDecode(C:ITransducer, D:ITransducer) begin
 		       		codedString = C.getOutputString()
 		    		print codedStrScript.concat(codedString)
 		    		
-		       		isAccepted = D.acceptsString(currentInput) 
+		       		isAccepted = D.acceptsString(codedString) 
 		       		deCodedString= D.getOutputString()
 		       		print deCodedStrScript.concat(deCodedString)
 		       		
