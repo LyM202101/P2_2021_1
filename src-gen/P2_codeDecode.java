@@ -62,6 +62,12 @@ public final class P2_codeDecode {
       InputAlphabet=$fix($opIntvlY('a','z'));
       $line=13;
       OutputAlphabet=$fix($opIntvlY('a','z'));
+      $line=17;
+      Object coder=$fix(P2_codeDecode.createCoder());
+      $line=18;
+      Object deCoder=$fix(P2_codeDecode.createDecoder());
+      $line=21;
+      P2_codeDecode.consoleCodeDecode($cast(gold.structures.automaton.ITransducer.class,coder),$cast(gold.structures.automaton.ITransducer.class,deCoder));
     }
     catch (Throwable $throwable) {
       $rethrow($throwable,P2_codeDecode.class,"main",$line);
@@ -383,6 +389,159 @@ public final class P2_codeDecode {
     }
     catch (Throwable $throwable) {
       $rethrow($throwable,P2_codeDecode.class,"gCode",$line);
+    }
+    return $result;
+  }
+  public static ITransducer createDecoder() {
+    int $line=0;
+    Object $result=null;
+    $try:try {
+      $line=280;
+      Object Q=$fix(GCollections.asSet("d0","d1","d2","d3","d4","d5","d6","err"));
+      $line=281;
+      Object \u03A3=$fix($opIntvlY('a','z'));
+      $line=282;
+      Object \u0393=$fix($opIntvlY('a','z'));
+      $line=283;
+      Object q=$fix("d0");
+      $line=284;
+      Object F=$fix(Q);
+      $line=286;
+      $result=$invokeConstructor(GDeterministicTransducer.class,new Object[]{Q,\u03A3,\u0393,q,F,new GMethod(P2_codeDecode.class,"\u03B4Decode"),new GMethod(P2_codeDecode.class,"gDecode"),new GMethod(P2_codeDecode.class,"hDecode")});
+      if (true) break $try;
+      $line=287;
+      $rethrow(new RuntimeException("The function \"createDecoder()\" did not return a value."));
+    }
+    catch (Throwable $throwable) {
+      $rethrow($throwable,P2_codeDecode.class,"createDecoder",$line);
+    }
+    return $cast(ITransducer.class,$result);
+  }
+  public static Object \u03B4Decode(String q, Object s) {
+    int $line=0;
+    Object $result=null;
+    $try:try {
+      $line=295;
+      Object alphabet=$fix($opIntvlY('a','z'));
+      $line=296;
+      String stateId=$cast(String.class,$fix("d"));
+      $line=299;
+      if ($bool(($bool((!$bool(((java.lang.String)q).endsWith($cast(java.lang.String.class,6)))&&!$bool(((java.lang.String)q).endsWith($cast(java.lang.String.class,"r")))))&&$opMembrY(s,alphabet)))) {
+        $line=300;
+        Integer nextStateNumber=$cast(Integer.class,$fix($opAdditY(Integer.parseInt($cast(java.lang.String.class,$getArrayValue(q,new Object[]{1}))),1)));
+        $line=301;
+        $result=((java.lang.String)stateId).concat($cast(java.lang.String.class,Integer.toString($int(nextStateNumber))));
+        if (true) break $try;
+      }
+      else {
+        $line=304;
+        if ($bool(($bool(((java.lang.String)q).endsWith($cast(java.lang.String.class,6)))&&$opMembrY(s,alphabet)))) {
+          $line=305;
+          $result=((java.lang.String)stateId).concat($cast(java.lang.String.class,"0"));
+          if (true) break $try;
+        }
+        else {
+          $line=309;
+          $result="err";
+          if (true) break $try;
+        }
+      }
+      $line=311;
+      $rethrow(new RuntimeException("The function \"\u03B4Decode(q:String,s:Object)\" did not return a value."));
+    }
+    catch (Throwable $throwable) {
+      $rethrow($throwable,P2_codeDecode.class,"\u03B4Decode",$line);
+    }
+    return $result;
+  }
+  public static Object hDecode(Object q, Object s) {
+    int $line=0;
+    Object $result=null;
+    $try:try {
+      $line=317;
+      String alph_str=$cast(String.class,$fix("abcdefghijklmnopqrstuvwxyz"));
+      $line=318;
+      char[] alph=$cast(char[].class,$fix(((java.lang.String)alph_str).toCharArray()));
+      $line=321;
+      Integer index=$cast(Integer.class,$fix($invokeMethod("indexOf",alph_str,new Object[]{s})));
+      $line=322;
+      Character nextChar=$cast(Character.class,$fix(' '));
+      $line=323;
+      Character prevChar=$cast(Character.class,$fix(' '));
+      $line=324;
+      Integer lastPos=$cast(Integer.class,$fix($opSubtrY($invokeField("length",alph),1)));
+      $line=327;
+      if ($opEqualY(index,0)) {
+        $line=328;
+        prevChar=$cast(Character.class,$fix(((char[])alph)[$int(lastPos)]));
+        $line=329;
+        nextChar=$cast(Character.class,$fix(((char[])alph)[$int($opAdditY(index,1))]));
+      }
+      else {
+        $line=330;
+        if ($opEqualY(index,lastPos)) {
+          $line=331;
+          prevChar=$cast(Character.class,$fix(((char[])alph)[$int($opSubtrY(index,1))]));
+          $line=332;
+          nextChar=$cast(Character.class,$fix(((char[])alph)[$int(0)]));
+        }
+        else {
+          $line=333;
+          if (!$opEqualY(index,0)) {
+            $line=334;
+            prevChar=$cast(Character.class,$fix(((char[])alph)[$int($opSubtrY(index,1))]));
+            $line=335;
+            nextChar=$cast(Character.class,$fix(((char[])alph)[$int($opAdditY(index,1))]));
+          }
+        }
+      }
+      $line=340;
+      if ($opEqualY(q,"d0")) {
+        $line=341;
+        $result=prevChar;
+        if (true) break $try;
+      }
+      else {
+        $line=342;
+        if ($bool((($opEqualY(q,"d1")||$opEqualY(q,"d4"))||$opEqualY(q,"d5")))) {
+          $line=343;
+          $result=s;
+          if (true) break $try;
+        }
+        else {
+          $line=344;
+          if ($opEqualY(q,"d3")) {
+            $line=345;
+            $result=nextChar;
+            if (true) break $try;
+          }
+          else {
+            $line=347;
+            $result="";
+            if (true) break $try;
+          }
+        }
+      }
+      $line=349;
+      $rethrow(new RuntimeException("The function \"hDecode(q:Object,s:Object)\" did not return a value."));
+    }
+    catch (Throwable $throwable) {
+      $rethrow($throwable,P2_codeDecode.class,"hDecode",$line);
+    }
+    return $result;
+  }
+  public static Object gDecode(Object q) {
+    int $line=0;
+    Object $result=null;
+    $try:try {
+      $line=355;
+      $result="";
+      if (true) break $try;
+      $line=356;
+      $rethrow(new RuntimeException("The function \"gDecode(q:Object)\" did not return a value."));
+    }
+    catch (Throwable $throwable) {
+      $rethrow($throwable,P2_codeDecode.class,"gDecode",$line);
     }
     return $result;
   }

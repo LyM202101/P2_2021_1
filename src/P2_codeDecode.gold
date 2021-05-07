@@ -14,11 +14,11 @@ procedure main(args:String[]) begin
     
     
     //Declare coder and decoder
-    //coder:=createCoder()
-   	//deCoder:=createDecoder()
+    coder:=createCoder()
+   	deCoder:=createDecoder()
    	
    	//Console (through this you can interact with coder and decoder)
-   	//consoleCodeDecode(coder,deCoder)
+   	consoleCodeDecode(coder,deCoder)
 end
 
 procedure consoleCodeDecode(C:ITransducer, D:ITransducer) begin
@@ -274,3 +274,84 @@ end
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 //---------------------------------------------------------                      D    E    C    O    D   E   R                                    ---------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+function createDecoder():ITransducer begin
+	//Declaration of automata
+	Q := {"d0", "d1", "d2", "d3","d4", "d5", "d6", "err"} 
+	Σ := ('a'‥'z')
+	Γ := ('a'‥'z')
+	q := "d0"
+	F := Q
+
+	return GDeterministicTransducer(Q,Σ,Γ,q,F,δDecode,gDecode,hDecode)
+end
+
+
+
+/**
+ * Transition function
+ */
+function δDecode(q:String,s) begin
+	alphabet = ('a'‥'z')
+	stateId: String = "d" //This is to allow flexibility in the case they change the states
+	
+	//If in any state d(n) where 0< n < 6 then advance to next state d(n+1)
+	if((!q.endsWith(6) and !q.endsWith("r"))  and s in alphabet ) then
+		nextStateNumber: int = Integer.parseInt(q[1]) + 1
+		return stateId.concat(Integer.toString(nextStateNumber))
+		
+	//If in d6 it circles back to d1
+	elseif(q.endsWith(6) and s in alphabet) then 
+		return stateId.concat("0") 
+		
+	//Next state is by default error state so if it doesnt go in the if or else if  then it sends the automaton to error state
+	else
+		return "err"
+	end
+end
+
+/**
+ * Mealy Automata Output function
+ */
+function hDecode(q,s) begin
+	alph_str:String = "abcdefghijklmnopqrstuvwxyz"
+	alph:char[] = alph_str.toCharArray()
+	
+	//Get the previous and next symbol of the sequence
+	index: int = alph_str.indexOf(s)
+	nextChar: char = ' ' 
+	prevChar: char = ' ' 
+	lastPos : int = alph.length -1
+	
+	//Calculates the next character or the previous character in case Rule 1 or 3 are fullfiled:
+	if index == 0 then
+		prevChar = alph[lastPos]
+		nextChar = alph[index + 1]
+	elseif index == lastPos then
+		prevChar = alph[index - 1]
+		nextChar = alph[0]
+	elseif index != 0 then
+		prevChar = alph[index - 1]
+		nextChar = alph[index + 1]
+	end
+	
+
+	//Output function
+	if q == "d0"then
+	 	return prevChar
+	elseif (q == "d1" or  q == "d4" or q == "d5") then
+	 	return s 
+	elseif q == "d3" then
+	 	return nextChar
+	else
+	  	return λ
+	 end
+end
+
+/**
+ * Moore AutomataOutput function
+ */
+function gDecode(q) begin
+	return λ 
+end
+	
