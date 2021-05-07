@@ -128,7 +128,6 @@ end
 /**
  * Transition function
  */
- //Nota : I typed los estado a ser strings para que gold no llorara cuando uso string methods
 function δCode(q: String,s) begin
 	
 	eAlph := ('a'‥'z') // Ver si se puede quitar esto y todos los s in alphabet . Creo que son redundantes tomando en cuenta que esto es tanto el alfabeto de entrada como el de salida
@@ -200,6 +199,9 @@ function hCode(q: String,s) begin
 	prevChar: char = ' ' //Filler
 	lastPos : int = alph.length -1 // gets to the last positon in the array. Corresponding to the letter Z
 	
+	
+	//TODO:CREO QUE ESTO SE PODRIA VOLVER UNA FUNCION ASI NO ESTA REPETIDO: HCER ESTO DE ULTIMAS
+	
 	//Calculates the next character or the previous character in case Rule 1 or 3 are fullfiled:
 	if (index == 0) then
 		prevChar = alph[lastPos]
@@ -265,11 +267,10 @@ function hCode(q: String,s) begin
 end
 
 
-/**
- * Moore AutomataOutput function
- */
 function gCode(q) begin
 	return λ //For P2 We wont be using a Moore Automata.
 end
 
-
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------                      D    E    C    O    D   E   R                                    ---------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
