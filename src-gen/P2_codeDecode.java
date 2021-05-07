@@ -178,4 +178,212 @@ public final class P2_codeDecode {
     }
     return $result;
   }
+  public static ITransducer createCoder() {
+    int $line=0;
+    Object $result=null;
+    $try:try {
+      $line=115;
+      Object q4_estados=$fix(GCollections.asSet("q4_a","q4_b","q4_c","q4_d","q4_e","q4_f","q4_g","q4_h","q4_i","q4_j","q4_k","q4_l","q4_m","q4_n","q4_o","q4_p","q4_q","q4_r","q4_s","q4_t","q4_u","q4_v","q4_w","q4_x","q4_y","q4_z"));
+      $line=118;
+      Object Q=$fix($opUnionY(GCollections.asSet("q0","q1","q2","q3","err"),q4_estados));
+      $line=119;
+      Object \u03A3=$fix($opIntvlY('a','z'));
+      $line=120;
+      Object \u0393=$fix($opIntvlY('a','z'));
+      $line=121;
+      Object q=$fix("q0");
+      $line=122;
+      Object F=$fix(Q);
+      $line=125;
+      $result=$invokeConstructor(GDeterministicTransducer.class,new Object[]{Q,\u03A3,\u0393,q,F,new GMethod(P2_codeDecode.class,"\u03B4Code"),new GMethod(P2_codeDecode.class,"gCode"),new GMethod(P2_codeDecode.class,"hCode")});
+      if (true) break $try;
+      $line=126;
+      $rethrow(new RuntimeException("The function \"createCoder()\" did not return a value."));
+    }
+    catch (Throwable $throwable) {
+      $rethrow($throwable,P2_codeDecode.class,"createCoder",$line);
+    }
+    return $cast(ITransducer.class,$result);
+  }
+  public static Object \u03B4Code(String q, Object s) {
+    int $line=0;
+    Object $result=null;
+    $try:try {
+      $line=134;
+      Object eAlph=$fix($opIntvlY('a','z'));
+      $line=140;
+      if ($bool(($bool($opEqualY(q,"q0"))&&$bool($opMembrY(s,eAlph))))) {
+        $line=141;
+        $result="q1";
+        if (true) break $try;
+      }
+      else {
+        $line=147;
+        if ($bool(($bool($opEqualY(q,"q1"))&&$bool($opMembrY(s,eAlph))))) {
+          $line=148;
+          $result="q2";
+          if (true) break $try;
+        }
+        else {
+          $line=154;
+          if ($bool(($bool($opEqualY(q,"q2"))&&$bool($opMembrY(s,eAlph))))) {
+            $line=155;
+            $result="q3";
+            if (true) break $try;
+          }
+          else {
+            $line=161;
+            if ($bool(($bool($opEqualY(q,"q3"))&&$bool($opMembrY(s,eAlph))))) {
+              $line=162;
+              String q4_nextLetterState=$cast(String.class,$fix($opAdditY("q4_",s)));
+              $line=163;
+              $result=q4_nextLetterState;
+              if (true) break $try;
+            }
+            else {
+              $line=169;
+              if ($bool(($bool(((java.lang.String)q).startsWith($cast(java.lang.String.class,"q4_")))&&$opMembrY(s,eAlph)))) {
+                $line=170;
+                $result="q0";
+                if (true) break $try;
+              }
+              else {
+                $line=176;
+                $result="err";
+                if (true) break $try;
+              }
+            }
+          }
+        }
+      }
+      $line=180;
+      $rethrow(new RuntimeException("The function \"\u03B4Code(q:String,s:Object)\" did not return a value."));
+    }
+    catch (Throwable $throwable) {
+      $rethrow($throwable,P2_codeDecode.class,"\u03B4Code",$line);
+    }
+    return $result;
+  }
+  public static Object hCode(String q, Object s) {
+    int $line=0;
+    Object $result=null;
+    $try:try {
+      $line=186;
+      Object eAlph=$fix($opIntvlY('a','z'));
+      $line=187;
+      String alph_str=$cast(String.class,$fix("abcdefghijklmnopqrstuvwxyz"));
+      $line=188;
+      char[] alph=$cast(char[].class,$fix(((java.lang.String)alph_str).toCharArray()));
+      $line=191;
+      Character currChar=$cast(Character.class,$fix(s));
+      $line=192;
+      String currCharAsString=$cast(String.class,$fix(Character.toString($cast(char.class,s))));
+      $line=195;
+      String duplicateChar=$cast(String.class,$fix(((java.lang.String)currCharAsString).concat($cast(java.lang.String.class,currCharAsString))));
+      $line=198;
+      Integer index=$cast(Integer.class,$fix($invokeMethod("indexOf",alph_str,new Object[]{currChar})));
+      $line=199;
+      Character nextChar=$cast(Character.class,$fix(' '));
+      $line=200;
+      Character prevChar=$cast(Character.class,$fix(' '));
+      $line=201;
+      Integer lastPos=$cast(Integer.class,$fix($opSubtrY($invokeField("length",alph),1)));
+      $line=204;
+      if ($bool($opEqualY(index,0))) {
+        $line=205;
+        prevChar=$cast(Character.class,$fix(((char[])alph)[$int(lastPos)]));
+        $line=206;
+        nextChar=$cast(Character.class,$fix(((char[])alph)[$int($opAdditY(index,1))]));
+      }
+      else {
+        $line=207;
+        if ($bool($opEqualY(index,lastPos))) {
+          $line=208;
+          prevChar=$cast(Character.class,$fix(((char[])alph)[$int($opSubtrY(index,1))]));
+          $line=209;
+          nextChar=$cast(Character.class,$fix(((char[])alph)[$int(0)]));
+        }
+        else {
+          $line=210;
+          if ($bool(($bool(!$opEqualY(index,0))&&$bool(!$opEqualY(index,lastPos))))) {
+            $line=211;
+            prevChar=$cast(Character.class,$fix(((char[])alph)[$int($opSubtrY(index,1))]));
+            $line=212;
+            nextChar=$cast(Character.class,$fix(((char[])alph)[$int($opAdditY(index,1))]));
+          }
+        }
+      }
+      $line=221;
+      if ($bool(($opEqualY(q,"q0")&&$opMembrY(s,eAlph)))) {
+        $line=222;
+        $result=nextChar;
+        if (true) break $try;
+      }
+      else {
+        $line=228;
+        if ($bool(($opEqualY(q,"q1")&&$opMembrY(s,eAlph)))) {
+          $line=229;
+          $result=duplicateChar;
+          if (true) break $try;
+        }
+        else {
+          $line=235;
+          if ($bool(($opEqualY(q,"q2")&&$opMembrY(s,eAlph)))) {
+            $line=236;
+            $result=prevChar;
+            if (true) break $try;
+          }
+          else {
+            $line=242;
+            if ($bool(($opEqualY(q,"q3")&&$opMembrY(s,eAlph)))) {
+              $line=243;
+              $result=s;
+              if (true) break $try;
+            }
+            else {
+              $line=249;
+              if ($bool(($bool(((java.lang.String)q).startsWith($cast(java.lang.String.class,"q4_")))&&$opMembrY(s,eAlph)))) {
+                $line=251;
+                for (Object $v1:GCollections.unmodifiableCollection(eAlph)) {
+                  Object letter=$v1;
+                  $line=252;
+                  if ($bool(((java.lang.String)q).endsWith($cast(java.lang.String.class,letter)))) {
+                    $line=253;
+                    $result=((java.lang.String)currCharAsString).concat($cast(java.lang.String.class,Character.toString($cast(char.class,letter))));
+                    if (true) break $try;
+                  }
+                }
+              }
+              else {
+                $line=261;
+                $result="";
+                if (true) break $try;
+              }
+            }
+          }
+        }
+      }
+      $line=265;
+      $rethrow(new RuntimeException("The function \"hCode(q:String,s:Object)\" did not return a value."));
+    }
+    catch (Throwable $throwable) {
+      $rethrow($throwable,P2_codeDecode.class,"hCode",$line);
+    }
+    return $result;
+  }
+  public static Object gCode(Object q) {
+    int $line=0;
+    Object $result=null;
+    $try:try {
+      $line=272;
+      $result="";
+      if (true) break $try;
+      $line=273;
+      $rethrow(new RuntimeException("The function \"gCode(q:Object)\" did not return a value."));
+    }
+    catch (Throwable $throwable) {
+      $rethrow($throwable,P2_codeDecode.class,"gCode",$line);
+    }
+    return $result;
+  }
 }
