@@ -59,7 +59,83 @@ end
  * Mealy Automata Output function
  */
 function h(q,s) begin
-	return λ
+	eAlph := ('a'‥'z')
+	alph_str:String = "abcdefghijklmnopqrstuvwxyz"
+	alph:char[] = alph_str.toCharArray()
+	
+	//Current symbol being handled (Also helps in case rule 4 is fullfiled)
+	currChar:char = s
+	currCharAsString:String = Character.toString(s)
+	
+	//Get the previous and next symbol of the sequence
+	index: int = alph_str.indexOf(currChar)
+	nextChar: char = ' ' //Filler (Considerar tener un symbolo de error para saber cuando la codificacion salio algo mal, auqnue no deberia ser posibel)
+	prevChar: char = ' ' //Filler
+	lastPos : int = alph.length -1 // gets to the last positon in the array. Corresponding to the letter Z
+	
+	//Calculates the next character or the previous character in case Rule 1 or 3 are fullfiled:
+	if (index == 0) then
+		prevChar = alph[lastPos]
+		nextChar = alph[index + 1]
+	elseif (index == lastPos) then
+		prevChar = alph[index - 1]
+		nextChar = alph[0]
+	elseif((index != 0) and (index != lastPos)) then
+		prevChar = alph[index - 1]
+		nextChar = alph[index + 1]
+	end
+	
+	//--------
+	//RULES
+	//--------
+	/**
+	 * Case : q % 7 == 1
+	 * Rule : Decode with previous letter of the alphabet
+	 */
+	if ( q == "d0" and s in eAlph) then
+	 	return prevChar
+	 	
+	/**
+	 * Case : q % 7 == 2 and q % 7 == 3
+	 * Rule :  Decode by reading letters in pos 2 outputing it back, then ignore the repeated letter in pos 3
+	 */
+	elseif (q == "d1" and s in eAlph) then
+	 	return s 
+	
+	elseif (q == "d2" and s in eAlph) then
+	 	return λ
+	
+	/**
+	 * Case : q % 7 == 4
+	 * Rule :  Decode with next letter in the alphabet
+	 */
+	elseif (q == "d3" and s in eAlph) then
+	 	return nextChar
+	
+	 /**
+	 * Case : q % 7 == 5
+	 * Rule :  No need to decode, just pring the same input letter
+	 */
+	 elseif (q == "d4" and s in eAlph) then
+	 	return s
+	
+		
+	 /**
+	 * Case : q % 7 == 6 and q % 7 == 0
+	 * Rule :  Replaced by the letter that was read and the previous letter (Slight adjustment to automata plan, first print input symbol and then the previous one)
+	 */
+	 elseif (q == "d5" and s in eAlph) then
+	 	return s
+	 	
+	 elseif (q == "d6" and s in eAlph) then
+	 	return λ
+	
+	 /**
+	  * Caso de error
+	  */
+	  else
+	  	return λ
+	  end
 end
 
 /**

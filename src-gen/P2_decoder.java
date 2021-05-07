@@ -75,9 +75,108 @@ public final class P2_decoder {
     Object $result=null;
     $try:try {
       $line=62;
-      $result="";
-      if (true) break $try;
+      Object eAlph=$fix($opIntvlY('a','z'));
       $line=63;
+      String alph_str=$cast(String.class,$fix("abcdefghijklmnopqrstuvwxyz"));
+      $line=64;
+      char[] alph=$cast(char[].class,$fix(((java.lang.String)alph_str).toCharArray()));
+      $line=67;
+      Character currChar=$cast(Character.class,$fix(s));
+      $line=68;
+      String currCharAsString=$cast(String.class,$fix(Character.toString($cast(char.class,s))));
+      $line=71;
+      Integer index=$cast(Integer.class,$fix($invokeMethod("indexOf",alph_str,new Object[]{currChar})));
+      $line=72;
+      Character nextChar=$cast(Character.class,$fix(' '));
+      $line=73;
+      Character prevChar=$cast(Character.class,$fix(' '));
+      $line=74;
+      Integer lastPos=$cast(Integer.class,$fix($opSubtrY($invokeField("length",alph),1)));
+      $line=77;
+      if ($bool($opEqualY(index,0))) {
+        $line=78;
+        prevChar=$cast(Character.class,$fix(((char[])alph)[$int(lastPos)]));
+        $line=79;
+        nextChar=$cast(Character.class,$fix(((char[])alph)[$int($opAdditY(index,1))]));
+      }
+      else {
+        $line=80;
+        if ($bool($opEqualY(index,lastPos))) {
+          $line=81;
+          prevChar=$cast(Character.class,$fix(((char[])alph)[$int($opSubtrY(index,1))]));
+          $line=82;
+          nextChar=$cast(Character.class,$fix(((char[])alph)[$int(0)]));
+        }
+        else {
+          $line=83;
+          if ($bool(($bool(!$opEqualY(index,0))&&$bool(!$opEqualY(index,lastPos))))) {
+            $line=84;
+            prevChar=$cast(Character.class,$fix(((char[])alph)[$int($opSubtrY(index,1))]));
+            $line=85;
+            nextChar=$cast(Character.class,$fix(((char[])alph)[$int($opAdditY(index,1))]));
+          }
+        }
+      }
+      $line=95;
+      if ($bool(($opEqualY(q,"d0")&&$opMembrY(s,eAlph)))) {
+        $line=96;
+        $result=prevChar;
+        if (true) break $try;
+      }
+      else {
+        $line=102;
+        if ($bool(($opEqualY(q,"d1")&&$opMembrY(s,eAlph)))) {
+          $line=103;
+          $result=s;
+          if (true) break $try;
+        }
+        else {
+          $line=105;
+          if ($bool(($opEqualY(q,"d2")&&$opMembrY(s,eAlph)))) {
+            $line=106;
+            $result="";
+            if (true) break $try;
+          }
+          else {
+            $line=112;
+            if ($bool(($opEqualY(q,"d3")&&$opMembrY(s,eAlph)))) {
+              $line=113;
+              $result=nextChar;
+              if (true) break $try;
+            }
+            else {
+              $line=119;
+              if ($bool(($opEqualY(q,"d4")&&$opMembrY(s,eAlph)))) {
+                $line=120;
+                $result=s;
+                if (true) break $try;
+              }
+              else {
+                $line=127;
+                if ($bool(($opEqualY(q,"d5")&&$opMembrY(s,eAlph)))) {
+                  $line=128;
+                  $result=s;
+                  if (true) break $try;
+                }
+                else {
+                  $line=130;
+                  if ($bool(($opEqualY(q,"d6")&&$opMembrY(s,eAlph)))) {
+                    $line=131;
+                    $result="";
+                    if (true) break $try;
+                  }
+                  else {
+                    $line=137;
+                    $result="";
+                    if (true) break $try;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      $line=139;
       $rethrow(new RuntimeException("The function \"h(q:Object,s:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -89,10 +188,10 @@ public final class P2_decoder {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=69;
+      $line=145;
       $result="";
       if (true) break $try;
-      $line=70;
+      $line=146;
       $rethrow(new RuntimeException("The function \"g(q:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
