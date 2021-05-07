@@ -5,107 +5,71 @@ Input: ahomebird
 Output: bhhnmemciiqd
 
 Input: allgreektome
-Output:
+Output: bllkgrgfeejtotnee
 
 
 Input: drawingablank
-Expected Output:
-Real     Output:
+Output: errzwiwoggzblbbnnj
 
 
 Input: gooutonalimb
-Expected Output:
-Real     Output:
-
+Output: hoonutupnnzlilnbb
 
 Input: ropes
-Expected Output:
-Real     Output:
+Output: soooese
 
 Input: papitas
-Expected Output:
-Real     Output:
+Output: qaaoitibss
 
 Input: salami
-Expected Output:
-Real     Output:
+Output: taakamaj
 
 Input: pie
-Expected Output:
-Real     Output:
+Output: qiid
 
 Input: alittlebirdtoldme
-Expected Output:
-Real     Output:
+Output: bllhtttmeeairiettnldlnee
+
+
+Input: parforthecours
+Output:
+
+
+Input: cupoofjoe
+Output:
+
+Input: breaktheice
+Output:
+
+
+Input: acitaboove 
+Output:
+
+Input: handdown
+Output: 
+
+
+Input: mycupoftea
+Output:
+
+Input: acolddayinjuli
+Output:
+
+
+Input: bllhtttmeeairiettnldlnee
+Output:
+
+Input: 
+Output:
 
 
 Input: 
-Expected Output:
-Real     Output:
+Output:
+
+Input: 
+Output:
 
 
 Input: 
-Expected Output:
-Real     Output:
-
-
-Input: 
-Expected Output:
-Real     Output:
-
-
-Input: 
-Expected Output:
-Real     Output:
-
-
-Input: 
-Expected Output:
-Real     Output:
-
-
-Input: 
-Expected Output:
-Real     Output:
-
-
-Input: 
-Expected Output:
-Real     Output:
-
-
-Input: 
-Expected Output:
-Real     Output:
-
-
-Input: 
-Expected Output:
-Real     Output:
-
-
-Input: 
-Expected Output:
-Real     Output:
-
-
-Input: 
-Expected Output:
-Real     Output:
-
-
-Input: 
-Expected Output:
-Real     Output:
-
-
-Input: 
-Expected Output:
-Real     Output:
-
-
-Input: 
-Expected Output:
-Real     Output:
-
+Output:
 

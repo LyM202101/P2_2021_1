@@ -28,11 +28,14 @@ var alph_str:String
 var alph:char[]
 var lastPos : int 
 
+/**
+ * Main procedure of the automata
+ */
 procedure main(args:String[]) begin
 	var sc:java.util.Scanner(System.$in)
 	
     alph_str = "abcdefghijklmnopqrstuvwxyz"
-    alph = alph_str.toCharArray()//no se si es redundante tener ('a'‥'z') y lo de toCharrArray. Toca probar si se puede reducir a uno
+    alph = alph_str.toCharArray()
     lastPos = alph.length -1
     
     //Declare both input and output alphabet of coder and decoder
@@ -50,6 +53,11 @@ procedure main(args:String[]) begin
    	consoleCodeDecode(coder,deCoder)
 end
 
+
+/**
+ * This defines the consolCodeDecoder. here the console program is presented and the automaton can be accesed by a user, 
+ * this whom can insert a string of their liking and see how it would code and decode.
+ */
 procedure consoleCodeDecode(C:ITransducer, D:ITransducer) begin
 	var sc:java.util.Scanner(System.$in)
 	currentInput: String = " "
@@ -100,8 +108,6 @@ procedure consoleCodeDecode(C:ITransducer, D:ITransducer) begin
 		       codedStrScript: String = "The Coded string was: "
 		       deCodedStrScript: String = "The DeCoded string was: "
 		       
-		       //TODO: Se puede simplificar como en CD3_2 pero hay que intentar encontrar una forma menos chambona
-		       
 		       //OPTION 1: CODE
 		       if option.equals("1") then
 		       		isAccepted = C.acceptsString(currentInput) 
@@ -140,13 +146,18 @@ end
 //---------------------------------------------------------                        C    O    D   E   R                                             ---------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+/**
+ * Creates the coder. Works based modulo 5 on the length of a string,
+ * The specific rules are declared in the task(enunciado)
+ * Mealy automata.
+ */
 function createCoder():ITransducer begin
 	
-	//q4_estados
+	//q4_letter. This is how we maintain "memory" of the letter previously read, through the state it self and its name
 	q4_estados := {"q4_a", "q4_b", "q4_c" , "q4_d", "q4_e", "q4_f", "q4_g", "q4_h", "q4_i", "q4_j", "q4_k", "q4_l", "q4_m", "q4_n", "q4_o", "q4_p", "q4_q", "q4_r", "q4_s", "q4_t", "q4_u", "q4_v", "q4_w", "q4_x", "q4_y", "q4_z"}
 	
 	//Declaration of automata
-	Q := {"q0", "q1", "q2", "q3", "err"} ∪ q4_estados 
+	Q := {"q0", "q1", "q2", "q3"} ∪ q4_estados 
 	Σ := Alphabet
 	Γ := Alphabet
 	q := "q0"
@@ -157,61 +168,40 @@ function createCoder():ITransducer begin
 end
 
 /**
- * Transition function
+ * Transition function for the coder of the string.
+ * It defines the basic  transitions between the 5 states that make the coder Mealy automata
+ * Each state represents a modulo of 5 on the curreng length of the string (where q(num) then num % 5 letters have been read up until thean)
+ * Each transition carries its own rules on how the output is formated, but those are specified in another function
  */
 function δCode(q: String,s) begin
 	
-	eAlph := ('a'‥'z') // Ver si se puede quitar esto y todos los s in alphabet . Creo que son redundantes tomando en cuenta que esto es tanto el alfabeto de entrada como el de salida
-	
-	 /**
-	 * Case : q % 5 == 1
-	 * Rule :  Coded with the next letter in the alphabet
-	 */
-	 if ((q == "q0") and (s in eAlph)) then
+	 //Case (q % 5 == 1) &&  Rule(Coded with the next letter in the alphabet)
+	 if q == "q0" then
 	 	return "q1"
 	 	
-	 /**
-	 * Case : q % 5 == 2
-	 * Rule :  Duplicates input letter
-	 */
-	 elseif ((q == "q1") and (s in eAlph)) then
+	 // Case (q % 5 == 2) &&  Rule( Duplicates input letter)
+	 elseif q == "q1" then
 	 	return "q2"
 	 	
-	 /**
-	 * Case : q % 5 == 3
-	 * Rule :  Coded with previous letter in the alphabet
-	 */
-	 elseif ((q == "q2") and (s in eAlph)) then
+	// Case (q % 5 == 2) &&  Rule( Duplicates input letter)
+	  elseif q == "q2" then
 	 	return "q3"
 	 
-	 /**
-	 * Case : q % 5 == 4
-	 * Rule :  Not coded, outputs same letter as input
-	 */
-	 elseif ((q == "q3") and (s in eAlph)) then
-	 	q4_nextLetterState : String = "q4_" + s // based on the input letter in s then it should transition to state q4_s
-	 	return q4_nextLetterState 
+	 //Case(q % 5 == 4) &&  Rule( Not coded, outputs same letter as input)
+	 elseif q == "q3" then
+	 	q4_nextLetterState : String = "q4_" + s // based on the input letter in s then it should transition to state q4_s. This is how the automaton "remembers" the previous character
+		return q4_nextLetterState 
 	 	
-	 /**
-	 * Case : q % 5 == 0
-	 * Rule :  Replaced by the letter that was read and the previous letter (Slight adjustment to automata plan, first print input symbol and then the previous one)
-	 */
-	 elseif (q.startsWith("q4_") and s in eAlph) then
+	 // Case ( q % 5 == 0) && Rule(Replaced by the letter that was read and the previous letter (Slight adjustment to automata plan, first print input symbol and then the previous one)
+	 elseif q.startsWith("q4_") then
 	 	return "q0"
-	 	
-	 /**
-	  * Caso de error
-	  */
-	 else
-	 	return "err"
-	 	
 	 end
-
 end
 
-
-
-
+/**
+ * The output function of the mealy machine used for the decoder works based on the rules given in the enunciado.
+ * Based on the position in the string, multiples of 5 (mod 5), diferent rules are to be used to calculate the output string
+ */
 function hCode(q: String,s) begin
 	
 	currCharAsString:String = Character.toString(s)//Current symbol being handled
@@ -219,38 +209,23 @@ function hCode(q: String,s) begin
 	prevChar: char = getPrevChar(s) //Previous char in alphabet
 	nextChar: char = getNextChar(s) //Next char in alphabet
 	
-	 /**
-	 * Case : q % 5 == 1
-	 * Rule :  Coded with the next letter in the alphabet
-	 */
+	//Case (q % 5 == 1) &&  Rule(Coded with the next letter in the alphabet)
 	 if (q == "q0") then
 	 	return nextChar
 	 
-	 /**
-	 * Case : q % 5 == 2
-	 * Rule :  Duplicates input letter
-	 */
+	 // Case (q % 5 == 2) &&  Rule( Duplicates input letter)
 	 elseif ( q == "q1") then
 	 	return duplicateChar
-	 
-	 /**
-	 * Case : q % 5 == 3
-	 * Rule :  Coded with previous letter in the alphabet
-	 */
+	 	
+	 // Case (q % 5 == 2) &&  Rule( Duplicates input letter)
 	 elseif ( q == "q2") then
 	 	return prevChar
 	 
-	 /**
-	 * Case : q % 5 == 4
-	 * Rule :  Not coded, outputs same letter as input
-	 */
+	 //Case(q % 5 == 4) &&  Rule( Not coded, outputs same letter as input)
 	 elseif (q == "q3") then
 	 	return s
 	 
-	 /**
-	 * Case : q % 5 == 0
-	 * Rule :  Replaced by the letter that was read and the previous letter (Slight adjustment to automata plan, first print input symbol and then the previous one)
-	 */
+	 // Case ( q % 5 == 0) && Rule(Replaced by the letter that was read and the previous letter (Slight adjustment to automata plan, first print input symbol and then the previous one)
 	 elseif ( q.startsWith("q4_")) then
 		//Does loop arround the whole alphabet to check which state its in and returns the corresponding letter (the state contains informatin about the previous letter)
 		for each letter in Alphabet do
@@ -259,14 +234,10 @@ function hCode(q: String,s) begin
 			end
 		end
 		
-	 /**
-	  * Case of error. Nothing else worked so something went wrong
-	  */
+	 //Error case
 	 else
 	 	return λ
-	 	
 	 end
-	
 end
 
 
@@ -274,9 +245,14 @@ end
 //---------------------------------------------------------                      D    E    C    O    D   E   R                                    ---------------------------------------------------------
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+/**
+ * Creates a decoder that well‥‥ decodes‥ the strings coded using the rules given.
+ * This decoder works modulo 7, as any 5 letter string will be coded into a 7 letter string.
+ *  Therefore to uno it one has to work based modulo 7
+ */
 function createDecoder():ITransducer begin
 	//Declaration of automata
-	Q := {"d0", "d1", "d2", "d3","d4", "d5", "d6", "err"} 
+	Q := {"d0", "d1", "d2", "d3","d4", "d5", "d6"} 
 	Σ := Alphabet
 	Γ := Alphabet
 	q := "d0"
@@ -287,7 +263,8 @@ end
 
 
 /**
- * Transition function
+ * Transition function for the decoder
+*  The states circle arround each other. from d0->d1->d2->d3->d4->d5->d6->d1->‥‥.
  */
 function δDecode(q:String,s) begin
 	stateId: String = "d" 
@@ -299,15 +276,14 @@ function δDecode(q:String,s) begin
 		
 	//If in d6 it circles back to d1
 	elseif(q.endsWith(6)) then 
-		return stateId.concat("0") 
-		
-	else
-		return "err"
+		return stateId.concat("0")
 	end
 end
 
 /**
- * Mealy Automata Output function
+ * Decode output function
+ * The excact rules used to decode can be seen in the documentation, it mostly consists in undoing the changes and char aditons on the base string
+ * More info in the docs.
  */
 function hDecode(q,s) begin
 	
