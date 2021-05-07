@@ -1,0 +1,105 @@
+
+using gold.**
+         
+//Declared outside in order that decoder and coder can read them  
+var InputAlphabet
+var OutputAlphabet
+
+procedure main(args:String[]) begin
+	var sc:java.util.Scanner(System.$in)
+    
+    //Declare both input and output alphabet of coder and decoder
+    InputAlphabet = ('a'‥'z')
+    OutputAlphabet = ('a'‥'z')
+    
+    
+    //Declare coder and decoder
+    //coder:=createCoder()
+   	//deCoder:=createDecoder()
+   	
+   	//Console (through this you can interact with coder and decoder)
+   	//consoleCodeDecode(coder,deCoder)
+end
+
+procedure consoleCodeDecode(C:ITransducer, D:ITransducer) begin
+	var sc:java.util.Scanner(System.$in)
+	currentInput: String = " "
+	
+	print "------------------------------------------------------------- "
+	print "Welcome to Proyect 2: Coder-Decoder! \n"
+		
+	while currentInput != λ do
+			
+		print "------------------------------------------------------------- "
+		print "Enter the string you want to use (empty stringto exit):"
+		
+		if currentInput != λ then
+			
+			currentInput := sc.nextLine()	
+			
+			if currentInput != λ then
+				valid := false
+				option:String = λ
+				
+				
+              while !valid do
+	              	print "What do you want to do with this string?"
+			       	print "1. code"
+			       	print "2. decode"
+			       	print "3. code and decode"
+		      		
+		      		
+		       		option := sc.nextLine()
+		       		
+		       		
+		       		if option ∈ {"1","2","3"} then
+		       			valid := true
+		       		else
+		       			print("You didnt select a valid Option, try again. \n")
+		       		end
+		       
+		       end
+		       
+		       
+		       
+		       codedString:String = ""
+		       deCodedString:String = ""
+		       var isAccepted: boolean //Will always be true
+		       
+		       codedStrScript: String = "The Coded string was: "
+		       deCodedStrScript: String = "The DeCoded string was: "
+		       
+		       //TODO: Se puede simplificar como en CD3_2 pero hay que intentar encontrar una forma menos chambona
+		       
+		       //OPTION 1: CODE
+		       if option.equals("1") then
+		       		isAccepted = C.acceptsString(currentInput) 
+		       		codedString = C.getOutputString()
+		       		print codedStrScript.concat(codedString)
+		       		
+		       	//OPTION 2: DECODE
+		       else if option.equals("2") then
+		       		isAccepted = D.acceptsString(currentInput) 
+		       		deCodedString= D.getOutputString()
+		       		print deCodedStrScript.concat(deCodedString)
+		       		
+		       	//OPTION 3: CODE AND DECODE
+		       	else
+		       		
+		       		isAccepted = C.acceptsString(currentInput) 
+		       		codedString = C.getOutputString()
+		    		print codedStrScript.concat(codedString)
+		    		
+		       		isAccepted = D.acceptsString(currentInput) 
+		       		deCodedString= D.getOutputString()
+		       		print deCodedStrScript.concat(deCodedString)
+		       		
+		       		isEqual: String = "The input string is " + (currentInput.equals(deCodedString)? "" : "not ") +  "equal to the decoded string"
+		       		print "\n" + isEqual
+		       		
+		       end	
+			end
+		end
+	end
+end
+end
