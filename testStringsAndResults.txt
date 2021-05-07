@@ -1,14 +1,11 @@
 Input: thecatinthehat
-Expected Output: uhhdcacuiimthtfhhzt
-Real     Output: uhhdcacuiimthtfhhzt
+Output: uhhdcacuiimthtfhhzt
 
 Input: ahomebird
-Expected Output: bhhnmemciiqd
-Real     Output: bhhnmemciiqd
+Output: bhhnmemciiqd
 
 Input: allgreektome
-Expected Output:
-Real     Output:
+Output:
 
 
 Input: drawingablank
