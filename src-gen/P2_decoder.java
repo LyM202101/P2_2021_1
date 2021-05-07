@@ -33,59 +33,37 @@ public final class P2_decoder {
       $rethrow($throwable,P2_decoder.class,"main",$line);
     }
   }
-  public static Object \u03B4(Object q, Object s) {
+  public static Object \u03B4(String q, Object s) {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=39;
-      Object eAlph=$fix($opIntvlY('a','z'));
-      $line=45;
-      if ($bool(($bool($opEqualY(q,"q0"))&&$bool($opMembrY(s,eAlph))))) {
+      $line=40;
+      Object alphabet=$fix($opIntvlY('a','z'));
+      $line=41;
+      String stateId=$cast(String.class,$fix("d"));
+      $line=44;
+      if ($bool(($bool((!$bool(((java.lang.String)q).endsWith($cast(java.lang.String.class,6)))&&!$bool(((java.lang.String)q).endsWith($cast(java.lang.String.class,"r")))))&&$opMembrY(s,alphabet)))) {
+        $line=45;
+        Integer nextStateNumber=$cast(Integer.class,$fix($opAdditY(Integer.parseInt($cast(java.lang.String.class,$getArrayValue(q,new Object[]{1}))),1)));
         $line=46;
-        $result="q1";
+        $result=((java.lang.String)stateId).concat($cast(java.lang.String.class,Integer.toString($int(nextStateNumber))));
         if (true) break $try;
       }
       else {
-        $line=52;
-        if ($bool(($bool($opEqualY(q,"q1"))&&$bool($opMembrY(s,eAlph))))) {
-          $line=53;
-          $result="q2";
+        $line=49;
+        if ($bool(($bool(((java.lang.String)q).endsWith($cast(java.lang.String.class,6)))&&$opMembrY(s,alphabet)))) {
+          $line=50;
+          $result=((java.lang.String)stateId).concat($cast(java.lang.String.class,"0"));
           if (true) break $try;
         }
         else {
-          $line=59;
-          if ($bool(($bool($opEqualY(q,"q2"))&&$bool($opMembrY(s,eAlph))))) {
-            $line=60;
-            $result="q3";
-            if (true) break $try;
-          }
-          else {
-            $line=66;
-            if ($bool(($bool($opEqualY(q,"q3"))&&$bool($opMembrY(s,eAlph))))) {
-              $line=67;
-              String q4_nextLetterState=$cast(String.class,$fix($opAdditY("q4_",s)));
-              $line=68;
-              $result=q4_nextLetterState;
-              if (true) break $try;
-            }
-            else {
-              $line=74;
-              if ($bool(($bool($invokeMethod("startsWith",q,new Object[]{"q4_"}))&&$opMembrY(s,eAlph)))) {
-                $line=75;
-                $result="q0";
-                if (true) break $try;
-              }
-              else {
-                $line=81;
-                $result="err";
-                if (true) break $try;
-              }
-            }
-          }
+          $line=54;
+          $result="err";
+          if (true) break $try;
         }
       }
-      $line=84;
-      $rethrow(new RuntimeException("The function \"\u03B4(q:Object,s:Object)\" did not return a value."));
+      $line=56;
+      $rethrow(new RuntimeException("The function \"\u03B4(q:String,s:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
       $rethrow($throwable,P2_decoder.class,"\u03B4",$line);
@@ -96,7 +74,10 @@ public final class P2_decoder {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=91;
+      $line=62;
+      $result="";
+      if (true) break $try;
+      $line=63;
       $rethrow(new RuntimeException("The function \"h(q:Object,s:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {
@@ -108,10 +89,10 @@ public final class P2_decoder {
     int $line=0;
     Object $result=null;
     $try:try {
-      $line=97;
+      $line=69;
       $result="";
       if (true) break $try;
-      $line=98;
+      $line=70;
       $rethrow(new RuntimeException("The function \"g(q:Object)\" did not return a value."));
     }
     catch (Throwable $throwable) {

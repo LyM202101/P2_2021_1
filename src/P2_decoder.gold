@@ -34,60 +34,32 @@ end
 
 /**
  * Transition function
+ * In this case the module changes to 7. As a 5 letter string will be always converted into an output with 7 strings:
  */
-function δ(q,s) begin
-	eAlph := ('a'‥'z')
+function δ(q:String,s) begin
+	alphabet = ('a'‥'z')
+	stateId: String = "d" //This is to allow flexibility in the case they change the states
 	
-	 /**
-	 * Case : q % 5 == 1
-	 * Rule : Decode with previous letter of the alphabet
-	 */
-	 if ((q == "q0") and (s in eAlph)) then
-	 	return "q1"
-	 	
-	 /**
-	 * Case : q % 5 == 2
-	 * Rule :  Duplicates input letter
-	 */
-	 elseif ((q == "q1") and (s in eAlph)) then
-	 	return "q2"
-	 	
-	 /**
-	 * Case : q % 5 == 3
-	 * Rule :  Coded with previous letter in the alphabet
-	 */
-	 elseif ((q == "q2") and (s in eAlph)) then
-	 	return "q3"
-	 
-	 /**
-	 * Case : q % 5 == 4
-	 * Rule :  Not coded, outputs same letter as input
-	 */
-	 elseif ((q == "q3") and (s in eAlph)) then
-	 	q4_nextLetterState : String = "q4_" + s // based on the input letter in s then it should transition to state q4_s
-	 	return q4_nextLetterState 
-	 	
-	 /**
-	 * Case : q % 5 == 0
-	 * Rule :  Replaced by the letter that was read and the previous letter (Slight adjustment to automata plan, first print input symbol and then the previous one)
-	 */
-	 elseif (q.startsWith("q4_") and s in eAlph) then
-	 	return "q0"
-	 	
-	 /**
-	  * Caso de error
-	  */
-	 else
-	 	return "err"
-	 	
-	 end
+	//If in any state d(n) where 0< n < 6 then advance to next state d(n+1)
+	if((!q.endsWith(6) and !q.endsWith("r"))  and s in alphabet ) then
+		nextStateNumber: int = Integer.parseInt(q[1]) + 1
+		return stateId.concat(Integer.toString(nextStateNumber))
+		
+	//If in d6 it circles back to d1
+	elseif(q.endsWith(6) and s in alphabet) then 
+		return stateId.concat("0") 
+		
+	//Next state is by default error state so if it doesnt go in the if or else if  then it sends the automaton to error state
+	else
+		return "err"
+	end
 end
 
 /**
  * Mealy Automata Output function
  */
 function h(q,s) begin
-	
+	return λ
 end
 
 /**
